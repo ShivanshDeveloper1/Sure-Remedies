@@ -13,11 +13,14 @@ const geistSans = Geist({
 
 export const metadata: Metadata = {
   title: {
-    default: "Sure Remedies | Thoughtful everyday essentials",
-    template: "%s | Sure Remedies",
+    default: "Boonvet Formulations | Thoughtful everyday essentials",
+    template: "%s | Boonvet Formulations",
   },
   description:
     "Discover thoughtfully selected essentials for a little more ease in the everyday.",
+    icons:{
+      icon:"/logo.png"
+    }
 };
 
 export default function RootLayout({

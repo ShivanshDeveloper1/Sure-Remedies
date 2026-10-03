@@ -100,7 +100,7 @@ export default async function Home() {
       <section className="section-space bg-ink text-white">
         <div className="page-container">
           <div className="max-w-xl">
-            <p className="eyebrow text-mint">The Sure Remedies difference</p>
+            <p className="eyebrow text-mint">The Boonvet Formulations difference</p>
             <h2 className="section-title mt-4 text-white">
               A little more care
               <br />
@@ -139,7 +139,7 @@ export default async function Home() {
             </div>
             <WhatsAppLink
               className="button-primary mt-8 lg:mt-0"
-              message="Hello, I'd like to learn more about Sure Remedies."
+              message="Hello, I'd like to learn more about Boonvet Formulations."
             >
               Chat on WhatsApp <span aria-hidden="true">↗</span>
             </WhatsAppLink>

@@ -64,7 +64,7 @@ export function Hero({
               <i />
             </div>
             <div className="hero-product hero-product-front">
-              <span>Sure Remedies</span>
+              <span>Boonvet Formulations</span>
               <div className="hero-product-stamp">S</div>
               <strong>good things<br />for every day</strong>
             </div>

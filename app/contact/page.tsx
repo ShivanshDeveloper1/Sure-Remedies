@@ -4,7 +4,7 @@ import { WhatsAppLink } from "@/components/whatsapp-link";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Sure Remedies about products, recommendations, and enquiries.",
+  description: "Get in touch with Boonvet Formulations about products, recommendations, and enquiries.",
 };
 
 export const dynamic = "force-dynamic";
@@ -35,7 +35,7 @@ export default function ContactPage() {
             </p>
             <WhatsAppLink
               className="button-primary mt-7"
-              message="Hello, I'd like to get in touch with Sure Remedies."
+              message="Hello, I'd like to get in touch with Boonvet Formulations."
             >
               Message us on WhatsApp <span aria-hidden="true">↗</span>
             </WhatsAppLink>
@@ -43,14 +43,14 @@ export default function ContactPage() {
           <aside className="rounded-3xl bg-soft p-7 sm:p-9">
             <p className="eyebrow">Contact details</p>
             <h3 className="mt-4 text-2xl font-semibold tracking-tight text-ink">
-              Sure Remedies
+              Boonvet Formulations
             </h3>
             <p className="mt-4 leading-7 text-muted">
               RAJIV KUMAR ANEJA | Owner
               <br />
               <a href="tel:07942720013">07942720013</a>
               <br />
-              E-1, Sure Remedies, Delhi Road, Saharanpur Industrial Area, Near
+              E-1, Boonvet Formulations, Delhi Road, Saharanpur Industrial Area, Near
               ITI, Saharanpur - 247001, Uttar Pradesh, India
               <br />
               GST: 09ASGPA2476C1Z2

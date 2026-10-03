@@ -31,7 +31,7 @@ export function ProductArtwork({
         <>
           <span className="product-glow" />
           <span className="product-packaging" aria-hidden="true">
-            <span className="product-brand">Sure Remedies</span>
+            <span className="product-brand">Boonvet Formulations</span>
             <span className="product-seal">{product.initials}</span>
             <span className="product-art-label">{product.name}</span>
             <span className="product-art-caption">

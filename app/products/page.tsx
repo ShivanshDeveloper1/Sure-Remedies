@@ -5,7 +5,7 @@ import { getPublicCatalog } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Products",
-  description: "Explore the thoughtfully selected Sure Remedies product collection by category.",
+  description: "Explore the thoughtfully selected Boonvet Formulations product collection by category.",
 };
 
 export const dynamic = "force-dynamic";
@@ -18,7 +18,7 @@ export default async function ProductsPage() {
       <section className="products-intro bg-ink py-14 text-white sm:py-20">
         <div className="page-container grid gap-9 lg:grid-cols-[1fr_0.8fr] lg:items-end">
           <div>
-            <p className="eyebrow text-mint">The Sure Remedies</p>
+            <p className="eyebrow text-mint">The Boonvet Formulations</p>
             <h1 className="mt-5 max-w-3xl text-5xl font-semibold leading-[1.03] tracking-[-0.065em] sm:text-6xl lg:text-7xl">
               Find something
               <br />

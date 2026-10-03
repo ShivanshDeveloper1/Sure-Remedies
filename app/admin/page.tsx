@@ -4,7 +4,7 @@ import { getAdminCatalog } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   title: "Admin",
-  description: "Manage the Sure Remedies categories and product catalogue.",
+  description: "Manage the Boonvet Formulations categories and product catalogue.",
 };
 
 export const dynamic = "force-dynamic";

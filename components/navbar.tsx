@@ -12,20 +12,20 @@ export function Navbar() {
       <div className="page-container flex min-h-[4.5rem] flex-wrap items-center justify-between gap-x-6 gap-y-2 py-3 lg:min-h-[5.25rem] lg:flex-nowrap">
      
 <Link
-  aria-label="Sure Remedies home"
+  aria-label="Boonvet Formulations home"
   className="flex min-w-0 shrink-0 items-center gap-2 sm:gap-2.5"
   href="/"
 >
   {/* Logo */}
   <img
-    src="/logo.webp"
-    alt="Sure Remedies"
+    src="/logo.png"
+    alt="Boonvet Formulations"
     className="h-9 w-9 shrink-0 object-contain sm:h-10 sm:w-10"
   />
 
   {/* Brand name */}
   <span className="truncate text-base font-semibold tracking-[-0.04em] text-ink sm:text-[1.15rem]">
-    Sure Remedies
+    Boonvet Formulations
   </span>
 </Link>
 

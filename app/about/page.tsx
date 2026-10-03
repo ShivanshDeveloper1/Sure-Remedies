@@ -4,7 +4,7 @@ import { PageIntro } from "@/components/page-intro";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn about Sure Remedies and our thoughtful approach to everyday essentials.",
+  description: "Learn about Boonvet Formulations and our thoughtful approach to everyday essentials.",
 };
 
 const values = [
@@ -37,7 +37,7 @@ export default function AboutPage() {
             <span className="text-purple">a little more thought.</span>
           </>
         }
-        description="Sure Remedies is based in Saharanpur, Uttar Pradesh, India, and is owned by RAJIV KUMAR ANEJA."
+        description="Boonvet Formulations is based in Saharanpur, Uttar Pradesh, India, and is owned by RAJIV KUMAR ANEJA."
       />
       <section className="section-space">
         <div className="page-container grid gap-12 md:grid-cols-[0.8fr_1.2fr]">
@@ -51,7 +51,7 @@ export default function AboutPage() {
           </div>
           <div className="space-y-5 text-base leading-8 text-muted">
             <p>
-              Sure Remedies, E-1, Sure Remedies, Delhi Road, Saharanpur
+              Boonvet Formulations, E-1, Boonvet Formulations, Delhi Road, Saharanpur
               Industrial Area, Near ITI, Saharanpur - 247001, Uttar Pradesh,
               India.
             </p>

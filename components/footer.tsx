@@ -13,11 +13,11 @@ export function Footer() {
         <div className="grid gap-10 border-b border-white/15 pb-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.7fr_1fr]">
           <div>
             <Link
-              aria-label="Sure Remedies home"
+              aria-label="Boonvet Formulations home"
               className="text-2xl font-semibold tracking-[-0.06em]"
               href="/"
             >
-              Sure Remedies<span className="text-mint">.</span>
+              Boonvet Formulations<span className="text-mint">.</span>
             </Link>
             <p className="mt-4 max-w-xs leading-7 text-white/60">
               Saharanpur, Uttar Pradesh, India
@@ -55,7 +55,7 @@ export function Footer() {
           </div>
         </div>
         <div className="flex flex-col gap-2 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Sure Remedies . All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Boonvet Formulations . All rights reserved.</p>
           <Link className="transition-colors hover:text-white" href="/admin">
             Admin
           </Link>
