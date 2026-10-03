@@ -1,5 +1,14 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment
+
+Copy `.env.example` to `.env.local` and set:
+
+- `MONGODB_URI` to your MongoDB connection string.
+- `WHATSAPP_PHONE` to the WhatsApp number in international format, with country code and no `+` (for example, `919876543210`).
+
+The same `WHATSAPP_PHONE` is used for every enquiry link. Product enquiries include the product name automatically.
+
 ## Getting Started
 
 First, run the development server:
