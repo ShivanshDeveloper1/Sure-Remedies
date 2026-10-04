@@ -4,24 +4,24 @@ import { PageIntro } from "@/components/page-intro";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn about Boonvet Formulations and our thoughtful approach to everyday essentials.",
+  description: "Learn about Boonvet Formulations, an animal feed supplement manufacturer based in Saharanpur, Uttar Pradesh.",
 };
 
 const values = [
   {
-    title: "Choose with intention",
+    title: "Practical knowledge",
     description:
-      "We look for useful products with thoughtful details and a place in real everyday routines.",
+      "A practical understanding of the animal feed supplement industry informs our work.",
   },
   {
-    title: "Keep it considered",
+    title: "Product focus",
     description:
-      "A good range does not need to be complicated. We focus on quality, clarity, and the essentials.",
+      "Our catalogue brings together animal nutrition products for customers to explore.",
   },
   {
-    title: "Make it personal",
+    title: "A dedicated team",
     description:
-      "Good service starts with listening. We are here to help you find the right fit for your needs.",
+      "We welcome product questions and enquiries from people looking for more information.",
   },
 ];
 
@@ -29,45 +29,47 @@ export default function AboutPage() {
   return (
     <>
       <PageIntro
-        eyebrow="A little about us"
+        eyebrow="About Boonvet Formulations"
         title={
           <>
-            Everyday, with
+            Practical focus.
             <br />
-            <span className="text-purple">a little more thought.</span>
+            <span className="text-purple">Animal nutrition.</span>
           </>
         }
-        description="Boonvet Formulations is based in Saharanpur, Uttar Pradesh, India, and is owned by RAJIV KUMAR ANEJA."
+        description="Boonvet Formulations is an animal feed supplement manufacturer based in Saharanpur, Uttar Pradesh, India."
       />
       <section className="section-space">
         <div className="page-container grid gap-12 md:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="eyebrow">Our point of view</p>
+            <p className="eyebrow">Our work</p>
             <h2 className="section-title mt-4">
-              Good products make
+              Supporting the
               <br />
-              everyday life easier.
+              animal nutrition industry.
             </h2>
           </div>
           <div className="space-y-5 text-base leading-8 text-muted">
             <p>
-              Boonvet Formulations, E-1, Boonvet Formulations, Delhi Road, Saharanpur
-              Industrial Area, Near ITI, Saharanpur - 247001, Uttar Pradesh,
-              India.
+              Armed with practical knowledge and a dedicated team, Boonvet
+              Formulations works in the animal feed supplement industry, with
+              a focus on animal nutrition, product quality, and consistency.
+              We provide clear catalogue information to people who enquire.
             </p>
             <p>
-              GST No. 09ASGPA2476C1Z2. For enquiries, call 07942720013.
+              Based in Saharanpur, Uttar Pradesh, we invite you to explore the
+              products currently listed or contact us directly with questions.
             </p>
             <Link className="button-primary mt-2" href="/products">
-              Explore the collection <span aria-hidden="true">↗</span>
+              Explore products <span aria-hidden="true">↗</span>
             </Link>
           </div>
         </div>
       </section>
       <section className="section-space bg-soft">
         <div className="page-container">
-          <p className="eyebrow">What matters to us</p>
-          <h2 className="section-title mt-3">A few things we believe in.</h2>
+          <p className="eyebrow">What guides our work</p>
+          <h2 className="section-title mt-3">A practical, product-focused approach.</h2>
           <div className="mt-9 grid gap-5 md:grid-cols-3">
             {values.map((value, index) => (
               <article

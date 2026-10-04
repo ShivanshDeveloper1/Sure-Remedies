@@ -10,21 +10,21 @@ export const dynamic = "force-dynamic";
 const reasons = [
   {
     number: "01",
-    title: "Thoughtfully selected",
+    title: "Practical industry knowledge",
     description:
-      "Every item in our range is chosen with care, keeping quality and usefulness at the heart of it.",
+      "A practical understanding of animal nutrition informs the products and support we provide.",
   },
   {
     number: "02",
-    title: "Made for everyday",
+    title: "Quality and consistency",
     description:
-      "Practical products that fit naturally into your routine, without making the simple things complicated.",
+      "A focus on quality and consistency across animal nutrition products.",
   },
   {
     number: "03",
-    title: "Here when you need us",
+    title: "Direct communication",
     description:
-      "Have a question or looking for something specific? Our team is just a message away.",
+      "Our team is available to answer product enquiries and help you find catalogue information.",
   },
 ];
 
@@ -34,40 +34,41 @@ export default async function Home() {
   return (
     <>
       <Hero
-        eyebrow="A little better, every day"
+        eyebrow="Animal nutrition · Feed supplements"
         title={
           <>
-            Good things for
+            Practical nutrition
             <br />
-            <span className="text-purple">everyday living.</span>
+            <span className="text-purple">for livestock care.</span>
           </>
         }
-        description="Discover a considered collection of useful, well-made essentials. Thoughtfully selected to bring a little more ease to the everyday."
+        description="Boonvet Formulations is an animal feed supplement manufacturer based in Saharanpur, Uttar Pradesh. Explore our product range or contact us with an enquiry."
         primaryHref="/products"
         primaryLabel="Explore our products"
         secondaryHref="/about"
-        secondaryLabel="Get to know us"
+        secondaryLabel="About Boonvet"
         artwork
       />
 
       <section className="section-space">
         <div className="page-container grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-end">
           <div>
-            <p className="eyebrow">A thoughtful way to shop</p>
+            <p className="eyebrow">Animal nutrition and feed solutions</p>
             <h2 className="section-title mt-4">
-              Useful things.
+              A practical focus
               <br />
-              <span className="text-purple">Chosen with care.</span>
+              <span className="text-purple">on animal nutrition.</span>
             </h2>
           </div>
           <div className="max-w-xl md:justify-self-end">
             <p className="text-lg leading-8 text-muted">
-              We believe the things we bring into our lives should earn their
-              place. Our growing range is built around quality, care, and the
-              little details that make everyday routines feel better.
+              Armed with practical knowledge and a dedicated team, Boonvet
+              Formulations focuses on manufacturing products for the animal
+              feed supplement industry. Browse the catalogue to see the
+              categories and products currently available.
             </p>
             <Link className="text-link mt-6 inline-flex" href="/about">
-              More about our approach <span aria-hidden="true">↗</span>
+              More about the company <span aria-hidden="true">↗</span>
             </Link>
           </div>
         </div>
@@ -77,8 +78,8 @@ export default async function Home() {
         <div className="page-container">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">Find your next favourite</p>
-              <h2 className="section-title mt-3">Explore our categories</h2>
+              <p className="eyebrow">Browse the catalogue</p>
+              <h2 className="section-title mt-3">Explore product categories</h2>
             </div>
             <Link className="text-link" href="/products">
               View all products <span aria-hidden="true">↗</span>
@@ -89,22 +90,22 @@ export default async function Home() {
       </section>
 
       <ProductSection
-        eyebrow="A few good things"
-        title="Made to be part of your everyday."
-        description="A closer look at some of the favourites in our growing collection."
+        eyebrow="From our catalogue"
+        title="Products for animal nutrition."
+        description="Browse products currently published in the Boonvet Formulations catalogue."
         products={products.slice(0, 3)}
         href="/products"
-        linkLabel="See the full collection"
+        linkLabel="View all products"
       />
 
       <section className="section-space bg-ink text-white">
         <div className="page-container">
           <div className="max-w-xl">
-            <p className="eyebrow text-mint">The Boonvet Formulations difference</p>
+            <p className="eyebrow text-mint">Our approach</p>
             <h2 className="section-title mt-4 text-white">
-              A little more care
+              Focused on useful,
               <br />
-              in the everyday.
+              reliable nutrition products.
             </h2>
           </div>
           <div className="mt-12 grid gap-8 border-t border-white/15 pt-8 md:grid-cols-3 md:gap-10">
@@ -127,14 +128,13 @@ export default async function Home() {
         <div className="page-container">
           <div className="rounded-[2rem] bg-mint p-8 sm:p-12 lg:flex lg:items-center lg:justify-between lg:p-16">
             <div className="max-w-2xl">
-              <p className="eyebrow text-purple">Let&apos;s talk</p>
+              <p className="eyebrow text-purple">Product enquiries</p>
               <h2 className="section-title mt-4">
-                Looking for something
-                <br className="hidden sm:block" /> in particular?
+                Have a question about our products?
               </h2>
               <p className="mt-4 max-w-lg leading-7 text-muted">
-                We&apos;re happy to help with product questions, recommendations,
-                or anything else you have in mind.
+                Contact our team for information about products in the current
+                catalogue.
               </p>
             </div>
             <WhatsAppLink

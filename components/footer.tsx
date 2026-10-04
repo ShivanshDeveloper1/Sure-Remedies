@@ -8,28 +8,26 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="bg-ink py-12 text-white">
+    <footer className="site-footer">
       <div className="page-container">
-        <div className="grid gap-10 border-b border-white/15 pb-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.7fr_1fr]">
+        <div className="footer-main">
           <div>
             <Link
               aria-label="Boonvet Formulations home"
-              className="text-2xl font-semibold tracking-[-0.06em]"
+              className="footer-brand"
               href="/"
             >
-              Boonvet Formulations<span className="text-mint">.</span>
+              Boonvet Formulations
             </Link>
-            <p className="mt-4 max-w-xs leading-7 text-white/60">
+            <p className="footer-contact mt-4">
+              Animal feed supplements and nutrition products
+              <br />
               Saharanpur, Uttar Pradesh, India
-              <br />
-              07942720013
-              <br />
-              GST No. 09ASGPA2476C1Z2
             </p>
           </div>
           <div>
-            <p className="text-sm font-semibold text-mint">Explore</p>
-            <nav aria-label="Footer navigation" className="mt-4 grid gap-3">
+            <p className="footer-heading">Explore</p>
+            <nav aria-label="Footer navigation" className="footer-links mt-4">
               {links.map((link) => (
                 <Link
                   className="w-fit text-sm text-white/70 transition-colors hover:text-white"
@@ -42,21 +40,21 @@ export function Footer() {
             </nav>
           </div>
           <div>
-            <p className="text-sm font-semibold text-mint">Have a question?</p>
-            <p className="mt-4 max-w-xs text-sm leading-6 text-white/60">
-              We&apos;d love to help you find just what you&apos;re looking for.
+            <p className="footer-heading">Product enquiries</p>
+            <p className="footer-contact mt-4">
+              Call us on 07942720013 or contact us about the product catalogue.
             </p>
             <Link
-              className="mt-3 inline-flex text-sm font-medium text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
+              className="footer-contact-link mt-3 inline-flex"
               href="/contact"
             >
               Get in touch <span className="ml-2" aria-hidden="true">↗</span>
             </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-2 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Boonvet Formulations . All rights reserved.</p>
-          <Link className="transition-colors hover:text-white" href="/admin">
+        <div className="footer-bottom">
+          <p>© {new Date().getFullYear()} Boonvet Formulations. All rights reserved.</p>
+          <Link className="footer-admin-link" href="/admin">
             Admin
           </Link>
         </div>

@@ -26,13 +26,12 @@ export function CategoryArtwork({
           unoptimized
         />
       ) : (
-        <>
-          <span className="category-art-circle" />
-          <span className="category-art-shape" />
-          <span className="category-number" aria-hidden="true">
+        <div className="category-art-placeholder">
+          <span className="category-art-initials" aria-hidden="true">
             {category.initials}
           </span>
-        </>
+          <span className="category-art-name">{category.name}</span>
+        </div>
       )}
     </div>
   );

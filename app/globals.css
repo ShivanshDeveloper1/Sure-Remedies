@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fffefa;
-  --foreground: #20221f;
-  --muted: #73766f;
-  --purple: #6d4aa2;
-  --purple-dark: #563884;
+  --background: #fbfaf6;
+  --foreground: #202820;
+  --muted: #667064;
+  --purple: #14568a;
+  --purple-dark: #0e426b;
   --mint: #dcebdc;
-  --ink: #20221f;
+  --ink: #202820;
 }
 
 @theme inline {
@@ -19,8 +19,10 @@
   --color-purple-dark: var(--purple-dark);
   --color-mint: var(--mint);
   --color-ink: var(--ink);
-  --color-soft: #f5f6f0;
-  --color-hero: #f5f7ef;
+  --color-soft: #f2f3ed;
+  --color-hero: #f5f4ed;
+  --color-brand-green: #68b879;
+  --color-brand-blue: #14568a;
 }
 
 * {
@@ -35,4 +37,9 @@ body {
 
 a {
   text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }

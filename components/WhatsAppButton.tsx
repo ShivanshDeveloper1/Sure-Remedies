@@ -1,39 +1,23 @@
 
-"use client";
-
-import Link from "next/link";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 import { MessageCircle } from "lucide-react";
 
 export default function WhatsAppButton() {
-  const phoneNumber = "919XXXXXXXXX"; // Replace with your WhatsApp number
-  const message = encodeURIComponent(
-    "Hi, I would like to know more about your services."
+  const href = getWhatsAppUrl(
+    "Hello, I'd like to learn more about Boonvet Formulations."
   );
 
+  if (!href) {
+    return null;
+  }
+
   return (
-    <Link
-      href={`https://wa.me/${phoneNumber}?text=${message}`}
+    <a
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="
-        fixed
-        bottom-5 right-5
-        z-[9999]
-        flex
-        h-14 w-14
-        items-center justify-center
-        rounded-full
-        bg-[#25D366]
-        text-white
-        shadow-[0_4px_18px_rgba(0,0,0,0.25)]
-        transition-all
-        duration-300
-        hover:scale-110
-        hover:shadow-[0_6px_24px_rgba(0,0,0,0.3)]
-        active:scale-95
-        sm:bottom-6 sm:right-6
-      "
+      className="whatsapp-float"
     >
       <MessageCircle
         size={30}
@@ -42,19 +26,10 @@ export default function WhatsAppButton() {
         className="text-white"
       />
 
-      {/* Online-style notification dot */}
       <span
-        className="
-          absolute
-          right-0.5 top-0.5
-          h-3.5 w-3.5
-          rounded-full
-          border-2 border-white
-          bg-[#25D366]
-        "
+        className="whatsapp-float-dot"
         aria-hidden="true"
       />
-    </Link>
+    </a>
   );
 }
-

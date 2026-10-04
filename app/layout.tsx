@@ -13,14 +13,14 @@ const geistSans = Geist({
 
 export const metadata: Metadata = {
   title: {
-    default: "Boonvet Formulations | Thoughtful everyday essentials",
+    default: "Boonvet Formulations | Animal Nutrition",
     template: "%s | Boonvet Formulations",
   },
   description:
-    "Discover thoughtfully selected essentials for a little more ease in the everyday.",
-    icons:{
-      icon:"/logo.png"
-    }
+    "Animal feed supplements and nutrition products from Boonvet Formulations, based in Saharanpur, Uttar Pradesh.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({

@@ -4,7 +4,7 @@ import { WhatsAppLink } from "@/components/whatsapp-link";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Boonvet Formulations about products, recommendations, and enquiries.",
+  description: "Contact Boonvet Formulations for animal nutrition and product enquiries.",
 };
 
 export const dynamic = "force-dynamic";
@@ -13,35 +13,34 @@ export default function ContactPage() {
   return (
     <>
       <PageIntro
-        eyebrow="We are here to help"
+        eyebrow="Contact Boonvet Formulations"
         title={
           <>
-            Have something
+            Product questions?
             <br />
-            <span className="text-purple">on your mind?</span>
+            <span className="text-purple">We are here to help.</span>
           </>
         }
-        description="Questions about a product, looking for a recommendation, or just want to say hello? We would love to hear from you."
+        description="Contact our team for information about the animal nutrition products in our catalogue."
       />
       <section className="section-space">
         <div className="page-container grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:gap-16">
           <div className="max-w-2xl">
-            <p className="eyebrow">Say hello</p>
-            <h2 className="section-title mt-3">Let&apos;s start a conversation.</h2>
+            <p className="eyebrow">Product enquiries</p>
+            <h2 className="section-title mt-3">Get in touch with our team.</h2>
             <p className="mt-5 leading-7 text-muted">
-              Reach out with your question and our team will be glad to point
-              you in the right direction. For product enquiries, WhatsApp is a
-              simple way to get started.
+              For product information, call us or send an enquiry on WhatsApp.
+              We will be glad to hear from you.
             </p>
             <WhatsAppLink
               className="button-primary mt-7"
               message="Hello, I'd like to get in touch with Boonvet Formulations."
             >
-              Message us on WhatsApp <span aria-hidden="true">↗</span>
+              Enquire on WhatsApp <span aria-hidden="true">↗</span>
             </WhatsAppLink>
           </div>
           <aside className="rounded-3xl bg-soft p-7 sm:p-9">
-            <p className="eyebrow">Contact details</p>
+            <p className="eyebrow">Business details</p>
             <h3 className="mt-4 text-2xl font-semibold tracking-tight text-ink">
               Boonvet Formulations
             </h3>

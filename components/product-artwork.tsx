@@ -28,17 +28,13 @@ export function ProductArtwork({
           unoptimized
         />
       ) : (
-        <>
-          <span className="product-glow" />
-          <span className="product-packaging" aria-hidden="true">
-            <span className="product-brand">Boonvet Formulations</span>
-            <span className="product-seal">{product.initials}</span>
-            <span className="product-art-label">{product.name}</span>
-            <span className="product-art-caption">
-              a little better, every day
-            </span>
+        <div className="product-art-placeholder">
+          <span className="product-placeholder-mark" aria-hidden="true">
+            {product.initials}
           </span>
-        </>
+          <span className="product-placeholder-name">{product.name}</span>
+          <span className="product-placeholder-note">Product image</span>
+        </div>
       )}
     </div>
   );
