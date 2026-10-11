@@ -27,14 +27,14 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="px-2 pb-2 pt-4">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-          <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted">
-            {product.category}
-          </p>
-          <h3 className="mt-2 text-lg font-semibold tracking-tight text-ink">
-            <Link className="transition-colors hover:text-purple" href={`/products/${product.slug}`}>
-              {product.name}
-            </Link>
-          </h3>
+            <h3 className="text-lg font-semibold tracking-tight text-ink">
+              <Link
+                className="transition-colors hover:text-purple"
+                href={`/products/${product.slug}`}
+              >
+                {product.name}
+              </Link>
+            </h3>
           </div>
           {priceLabel ? (
             <span className="shrink-0 pt-0.5 text-xs font-semibold text-ink">

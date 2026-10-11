@@ -16,7 +16,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
         <div className="max-w-2xl">
           <p className="eyebrow">Keep exploring</p>
           <h2 className="section-title mt-3" id="related-products">
-            More from this category.
+            More products.
           </h2>
         </div>
         <div className="mt-8">

@@ -1,18 +1,13 @@
 import Link from "next/link";
-import {
-  getProductPriceLabel,
-  type Category,
-  type Product,
-} from "@/lib/site-data";
+import { getProductPriceLabel, type Product } from "@/lib/site-data";
 import { ProductArtwork } from "@/components/product-artwork";
 import { WhatsAppLink } from "@/components/whatsapp-link";
 
 type ProductDetailsProps = {
-  category: Category;
   product: Product;
 };
 
-export function ProductDetails({ category, product }: ProductDetailsProps) {
+export function ProductDetails({ product }: ProductDetailsProps) {
   const priceLabel = getProductPriceLabel(product);
 
   return (
@@ -31,15 +26,6 @@ export function ProductDetails({ category, product }: ProductDetailsProps) {
             </Link>
           </li>
           <li aria-hidden="true">/</li>
-          <li>
-            <Link
-              className="transition-colors hover:text-purple"
-              href={`/products#category-${category.slug}`}
-            >
-              {category.name}
-            </Link>
-          </li>
-          <li aria-hidden="true">/</li>
           <li aria-current="page" className="font-medium text-ink">
             {product.name}
           </li>
@@ -54,7 +40,6 @@ export function ProductDetails({ category, product }: ProductDetailsProps) {
         />
 
         <div className="pt-1 lg:py-5">
-          <p className="eyebrow">{category.name}</p>
           <h1 className="mt-4 text-4xl font-semibold leading-[1.08] tracking-[-0.065em] text-ink sm:text-5xl">
             {product.name}
           </h1>

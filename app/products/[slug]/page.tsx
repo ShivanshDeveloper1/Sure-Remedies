@@ -35,14 +35,14 @@ export default async function ProductDetailPage({
     notFound();
   }
 
-  const { category, product } = result;
-  const relatedProducts = await getRelatedProducts(product.categoryId, product.id);
+  const { product } = result;
+  const relatedProducts = await getRelatedProducts(product.id);
 
   return (
     <>
       <section className="bg-hero py-10 sm:py-14">
         <div className="page-container">
-          <ProductDetails category={category} product={product} />
+          <ProductDetails product={product} />
         </div>
       </section>
       <RelatedProducts products={relatedProducts} />

@@ -18,7 +18,6 @@ type CategoryForm = {
 
 type ProductForm = {
   name: string;
-  categoryId: string;
   image: string;
   price: string;
   priceLabel: string;
@@ -38,7 +37,6 @@ const emptyCategory: CategoryForm = {
 function productForm(product?: Product): ProductForm {
   return {
     name: product?.name ?? "",
-    categoryId: product?.categoryId ?? "",
     image: product?.image ?? "",
     price: product?.price != null ? product.price.toString() : "",
     priceLabel: product?.priceLabel ?? "",
@@ -149,11 +147,6 @@ async function request(
 ) {
   const url = `/api/admin/${resource}${id ? `/${id}` : ""}`;
 
-  console.log("🚀 API REQUEST START");
-  console.log("URL:", url);
-  console.log("Method:", method);
-  console.log("Body:", body);
-
   try {
     const response = await fetch(url, {
       method,
@@ -165,13 +158,7 @@ async function request(
         : {}),
     });
 
-    console.log("📡 API RESPONSE");
-    console.log("Status:", response.status);
-    console.log("OK:", response.ok);
-
     const responseText = await response.text();
-
-    console.log("📦 Raw API response:", responseText);
 
     let result: { error?: string } = {};
 
@@ -180,23 +167,20 @@ async function request(
         ? (JSON.parse(responseText) as { error?: string })
         : {};
     } catch (parseError) {
-      console.error("❌ Could not parse API response:", parseError);
+      console.error("Could not parse API response:", parseError);
     }
 
     if (!response.ok) {
-      console.error("❌ API REQUEST FAILED");
-      console.error("Status:", response.status);
-      console.error("Error:", result.error);
+      console.error("API request failed:", url, response.status, result.error);
 
       throw new Error(
         result.error ?? `Request failed with status ${response.status}`
       );
     }
 
-    console.log("✅ API REQUEST SUCCESS");
-
+    return result;
   } catch (error) {
-    console.error("🔥 REQUEST FUNCTION ERROR:", error);
+    console.error("Request function error:", error);
     throw error;
   }
 }
@@ -337,58 +321,43 @@ export function AdminCatalog({
   }
 
   async function saveProduct(event: FormEvent<HTMLFormElement>) {
-console.log("🔥 saveProduct() CALLED");
+    event.preventDefault();
 
-  event.preventDefault();
+    await perform(async () => {
+      // 1. Validate / parse specifications safely
+      let specifications: Specification[];
 
-  console.log("✅ preventDefault() executed");
-  console.log("Current product:", product);
-  console.log("Current productId:", productId);
-  console.log("Current busy:", busy);
-  console.log("Current categories:", categories);
-  await perform(async () => {
-    // 1. Validate / parse specifications safely
-    console.log("🔵 Specifications text:", product.specificationsText);
-
-let specifications: Specification[];
-
-try {
-  specifications = parseSpecifications(product.specificationsText);
-
-  console.log("✅ Specifications parsed:", specifications);
-} catch (error) {
-  console.error("❌ SPECIFICATIONS ERROR:", error);
-  throw error;
-}
-
-console.log("🟣 PASSED INITIAL saveProduct LOGS");
-    console.log("🟣 PASSED INITIAL saveProduct LOGS");
-
-    // 2. Format price as number or null (never undefined)
-    const formattedPrice =
-      product.price.trim() !== "" && !isNaN(Number(product.price))
-        ? Number(product.price)
-        : null;
-
-    await request(
-      "products",
-      productId ? "PUT" : "POST",
-      productId ?? undefined,
-      {
-        name: product.name,
-        categoryId: product.categoryId,
-        image: product.image,
-        price: formattedPrice,
-        priceLabel: product.priceLabel,
-        shortDescription: product.shortDescription,
-        description: product.description,
-        specifications,
-        status: product.status,
+      try {
+        specifications = parseSpecifications(product.specificationsText);
+      } catch (error) {
+        console.error("Specifications error:", error);
+        throw error;
       }
-    );
-    resetProduct();
-  });
-}
+
+      // 2. Format price as number or null
+      const formattedPrice =
+        product.price.trim() !== "" && !isNaN(Number(product.price))
+          ? Number(product.price)
+          : null;
+
+      await request(
+        "products",
+        productId ? "PUT" : "POST",
+        productId ?? undefined,
+        {
+          name: product.name,
+          image: product.image,
+          price: formattedPrice,
+          priceLabel: product.priceLabel,
+          shortDescription: product.shortDescription,
+          description: product.description,
+          specifications,
+          status: product.status,
+        }
+      );
+      resetProduct();
+    });
+  }
 
   async function remove(
     resource: "categories" | "products",
@@ -398,7 +367,9 @@ console.log("🟣 PASSED INITIAL saveProduct LOGS");
     if (!window.confirm(`Delete “${name}”?`)) {
       return;
     }
-    const deleted = await perform(() => request(resource, "DELETE", id));
+    const deleted = await perform(async () => {
+      await request(resource, "DELETE", id);
+    });
     if (deleted && resource === "categories" && categoryId === id) {
       resetCategory();
     }
@@ -541,7 +512,7 @@ console.log("🟣 PASSED INITIAL saveProduct LOGS");
             </ul>
           ) : (
             <p className="mt-5 text-sm leading-6 text-muted">
-              Create a category before adding products.
+              No categories yet. Products can be created without a category.
             </p>
           )}
         </div>
@@ -549,17 +520,7 @@ console.log("🟣 PASSED INITIAL saveProduct LOGS");
 
       {/* Product Section */}
       <section className="grid gap-6 xl:grid-cols-[0.8fr_1.2fr]">
-      <form
-  className="admin-panel"
-  onSubmit={(event) => {
-    console.log("🟡 FORM SUBMIT TRIGGERED");
-    console.log("Form product state:", product);
-    console.log("Form product ID:", productId);
-    console.log("Form busy state:", busy);
-
-    void saveProduct(event);
-  }}
->
+        <form className="admin-panel" onSubmit={saveProduct}>
           <div className="admin-panel-heading">
             <div>
               <p className="eyebrow">Products</p>
@@ -577,8 +538,7 @@ console.log("🟣 PASSED INITIAL saveProduct LOGS");
               </button>
             ) : null}
           </div>
-          {categories.length ? (
-            <div className="mt-5 grid gap-4">
+          <div className="mt-5 grid gap-4">
               <Field label="Name">
                 <input
                   className={inputClass}
@@ -588,24 +548,6 @@ console.log("🟣 PASSED INITIAL saveProduct LOGS");
                   required
                   value={product.name}
                 />
-              </Field>
-              <Field label="Category">
-                <select
-                  className={inputClass}
-                  onChange={(event) =>
-                    setProduct({ ...product, categoryId: event.target.value })
-                  }
-                  required
-                  value={product.categoryId}
-                >
-                  <option value="">Select a category</option>
-                  {categories.map((item) => (
-                    <option key={item.id} value={item.id}>
-                      {item.name}
-                      {item.status === "inactive" ? " (disabled)" : ""}
-                    </option>
-                  ))}
-                </select>
               </Field>
               <ImageField
                 id="product-image"
@@ -692,30 +634,14 @@ console.log("🟣 PASSED INITIAL saveProduct LOGS");
                   <option value="draft">Unpublished</option>
                 </select>
               </Field>
-            <button
-  className="admin-primary"
-  disabled={busy}
-  type="submit"
-  onClick={() => {
-    console.log("🟢 CREATE PRODUCT BUTTON CLICKED");
-    console.log("Product state:", product);
-    console.log("Busy:", busy);
-    console.log("Product ID:", productId);
-    console.log("Categories:", categories);
-  }}
->
-  {busy
-    ? "Saving..."
-    : productId
-    ? "Save product"
-    : "Create product"}
-</button>
+            <button className="admin-primary" disabled={busy} type="submit">
+              {busy
+                ? "Saving..."
+                : productId
+                  ? "Save product"
+                  : "Create product"}
+            </button>
             </div>
-          ) : (
-            <p className="mt-5 text-sm leading-6 text-muted">
-              Create a category before adding products.
-            </p>
-          )}
         </form>
 
         <div className="admin-panel">
@@ -738,8 +664,10 @@ console.log("🟣 PASSED INITIAL saveProduct LOGS");
                   <div className="min-w-0">
                     <p className="font-semibold text-ink">{item.name}</p>
                     <p className="mt-1 text-xs text-muted">
-                      {item.category} ·{" "}
-                      {item.status === "published" ? "Published" : "Unpublished"}
+                      {item.category ? `${item.category} · ` : ""}
+                      {item.status === "published"
+                        ? "Published"
+                        : "Unpublished"}
                     </p>
                   </div>
                   <div className="flex gap-2">

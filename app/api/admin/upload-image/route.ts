@@ -70,7 +70,10 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({
-      url: result.secure_url.replace("/upload/", "/upload/f_auto,q_auto/"),
+      url: result.secure_url.replace(
+        "/upload/",
+        "/upload/f_auto,q_auto:good,w_1600,c_limit,dpr_auto/",
+      ),
     });
   } catch {
     return NextResponse.json(

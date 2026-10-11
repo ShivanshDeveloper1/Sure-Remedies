@@ -6,7 +6,7 @@ export type ProductDocument = {
   _id: mongoose.Types.ObjectId;
   name: string;
   slug: string;
-  categoryId: mongoose.Types.ObjectId;
+  categoryId?: mongoose.Types.ObjectId;
   image?: string;
   price?: number;
   priceLabel?: string;
@@ -33,7 +33,7 @@ const productSchema = new Schema<ProductDocument>(
     categoryId: {
       type: Schema.Types.ObjectId,
       ref: "Category",
-      required: true,
+      required: false,
       index: true,
     },
     image: { type: String, trim: true, default: "" },

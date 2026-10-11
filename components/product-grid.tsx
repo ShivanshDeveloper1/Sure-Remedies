@@ -13,7 +13,7 @@ export function ProductGrid({ products, id }: ProductGridProps) {
         className="rounded-2xl border border-ink/10 bg-white p-7 text-sm leading-6 text-muted"
         id={id}
       >
-        There are no products in this category yet. Please check back soon.
+        There are no products to show just yet. Please check back soon.
       </p>
     );
   }

@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { CategoryCards } from "@/components/category-cards";
 import { Hero } from "@/components/hero";
 import { ProductSection } from "@/components/product-section";
 import { getPublicCatalog } from "@/lib/catalog";
 import { WhatsAppLink } from "@/components/whatsapp-link";
+import { ImageSlider } from "@/components/image-slider";
 
 export const dynamic = "force-dynamic";
 
@@ -29,10 +29,11 @@ const reasons = [
 ];
 
 export default async function Home() {
-  const { categories, products } = await getPublicCatalog();
+  const { products } = await getPublicCatalog();
 
   return (
     <>
+      <ImageSlider />
       <Hero
         eyebrow="Animal nutrition · Feed supplements"
         title={
@@ -64,8 +65,8 @@ export default async function Home() {
             <p className="text-lg leading-8 text-muted">
               Armed with practical knowledge and a dedicated team, Boonvet
               Formulations focuses on manufacturing products for the animal
-              feed supplement industry. Browse the catalogue to see the
-              categories and products currently available.
+              feed supplement industry. Browse the products currently
+              available in our catalogue.
             </p>
             <Link className="text-link mt-6 inline-flex" href="/about">
               More about the company <span aria-hidden="true">↗</span>
@@ -74,26 +75,11 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="section-space bg-soft">
-        <div className="page-container">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Browse the catalogue</p>
-              <h2 className="section-title mt-3">Explore product categories</h2>
-            </div>
-            <Link className="text-link" href="/products">
-              View all products <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-          <CategoryCards categories={categories} />
-        </div>
-      </section>
-
       <ProductSection
         eyebrow="From our catalogue"
         title="Products for animal nutrition."
         description="Browse products currently published in the Boonvet Formulations catalogue."
-        products={products.slice(0, 3)}
+        products={products}
         href="/products"
         linkLabel="View all products"
       />

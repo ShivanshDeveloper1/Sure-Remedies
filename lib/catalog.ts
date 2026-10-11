@@ -30,7 +30,7 @@ type CategoryInput = {
 
 type ProductInput = {
   name: string;
-  categoryId: string;
+  categoryId?: string;
   image: string;
   price?: number;
   priceLabel: string;
@@ -70,17 +70,25 @@ function mapCategory(document: CategoryDocument, index: number): Category {
   };
 }
 
+function getProductTheme(name: string): Product["theme"] {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = ((hash << 5) - hash) + name.charCodeAt(i);
+  }
+  return themes[Math.abs(hash) % themes.length];
+}
+
 function mapProduct(
   document: ProductDocument,
-  category: Category,
+  category: Category | null,
 ): Product {
   return {
     id: document._id.toString(),
     name: document.name,
     slug: document.slug,
-    category: category.name,
-    categoryId: category.id,
-    categorySlug: category.slug,
+    category: category?.name,
+    categoryId: category?.id,
+    categorySlug: category?.slug,
     image: document.image ?? "",
     ...(document.price === undefined ? {} : { price: document.price }),
     ...(document.priceLabel ? { priceLabel: document.priceLabel } : {}),
@@ -90,7 +98,7 @@ function mapProduct(
       label,
       value,
     })),
-    theme: category.theme,
+    theme: category?.theme ?? getProductTheme(document.name),
     initials:
       document.name
         .split(/\s+/)
@@ -109,10 +117,13 @@ function mapCatalogDocuments(
   const categoriesById = new Map(
     mappedCategories.map((category) => [category.id, category]),
   );
-  const products = productDocuments.flatMap((document) => {
-    const category = categoriesById.get(document.categoryId.toString());
-    return category ? [mapProduct(document, category)] : [];
-  });
+
+  const products = productDocuments.map((document) =>
+    mapProduct(
+      document,
+      categoriesById.get(document.categoryId?.toString() ?? "") ?? null,
+    ),
+  );
 
   return { categories: mappedCategories, products };
 }
@@ -123,10 +134,7 @@ async function loadCatalogDocuments(activeOnly: boolean): Promise<CatalogDocumen
   const categories = await CategoryModel.find(categoryFilter)
     .sort({ name: 1 })
     .lean<CategoryDocument[]>();
-  const categoryIds = categories.map((category) => category._id);
-  const productFilter = activeOnly
-    ? { status: "published", categoryId: { $in: categoryIds } }
-    : {};
+  const productFilter = activeOnly ? { status: "published" } : {};
   const products = await ProductModel.find(productFilter)
     .sort({ createdAt: -1 })
     .lean<ProductDocument[]>();
@@ -153,44 +161,21 @@ export async function getPublicProduct(slug: string) {
     return null;
   }
 
-  const categoryDocuments = await CategoryModel.find({ status: "active" })
-    .sort({ name: 1 })
-    .lean<CategoryDocument[]>();
-  const categoryIndex = categoryDocuments.findIndex(
-    (item) => item._id.toString() === document.categoryId.toString(),
-  );
-  if (categoryIndex < 0) {
-    return null;
-  }
-
-  const category = mapCategory(categoryDocuments[categoryIndex], categoryIndex);
   return {
-    category,
-    product: mapProduct(document, category),
+    product: mapProduct(document, null),
   };
 }
 
-export async function getRelatedProducts(categoryId: string, productId: string) {
+export async function getRelatedProducts(productId: string) {
   await connectToDatabase();
-  const categoryDocuments = await CategoryModel.find({ status: "active" })
-    .sort({ name: 1 })
-    .lean<CategoryDocument[]>();
-  const categoryIndex = categoryDocuments.findIndex(
-    (category) => category._id.toString() === categoryId,
-  );
-  if (categoryIndex < 0) {
-    return [];
-  }
 
   const productDocuments = await ProductModel.find({
-    categoryId,
     status: "published",
     _id: { $ne: productId },
   })
     .sort({ createdAt: -1 })
     .lean<ProductDocument[]>();
-  const category = mapCategory(categoryDocuments[categoryIndex], categoryIndex);
-  return productDocuments.map((document) => mapProduct(document, category));
+  return productDocuments.map((document) => mapProduct(document, null));
 }
 
 function readString(
@@ -273,13 +258,17 @@ function readProductInput(value: unknown): ProductInput {
     };
   });
 
-  if (!mongoose.isValidObjectId(input.categoryId)) {
+  const categoryId = input.categoryId;
+  if (
+    categoryId !== undefined &&
+    categoryId !== "" &&
+    !mongoose.isValidObjectId(categoryId as string)
+  ) {
     throw new CatalogError("Select a valid category.", 400);
   }
 
-  return {
+  const product: ProductInput = {
     name: readString(input.name, "Product name", true),
-    categoryId: String(input.categoryId),
     image: readString(input.image, "Product image"),
     ...(price === undefined ? {} : { price }),
     priceLabel: readString(input.priceLabel, "Price label"),
@@ -288,14 +277,12 @@ function readProductInput(value: unknown): ProductInput {
     specifications,
     status,
   };
-}
 
-async function ensureCategoryExists(categoryId: string) {
-  const category = await CategoryModel.findById(categoryId)
-    .lean<CategoryDocument>();
-  if (!category) {
-    throw new CatalogError("The selected category does not exist.", 400);
+  if (categoryId) {
+    product.categoryId = String(categoryId);
   }
+
+  return product;
 }
 
 function throwIfDuplicateSlug(error: unknown): never {
@@ -372,7 +359,6 @@ export async function deleteCategory(id: string) {
 export async function createProduct(value: unknown) {
   await connectToDatabase();
   const input = readProductInput(value);
-  await ensureCategoryExists(input.categoryId);
   const slug = makeSlug(input.name);
   if (!slug) {
     throw new CatalogError("Product name must include letters or numbers.", 400);
@@ -392,7 +378,6 @@ export async function updateProduct(id: string, value: unknown) {
     throw new CatalogError("Product not found.", 404);
   }
   const input = readProductInput(value);
-  await ensureCategoryExists(input.categoryId);
   const slug = makeSlug(input.name);
   if (!slug) {
     throw new CatalogError("Product name must include letters or numbers.", 400);
