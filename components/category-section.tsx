@@ -28,16 +28,20 @@ export function CategorySection({
           className="category-section-art"
         />
         <div className="min-w-0 flex-1">
-          <p className="eyebrow">Collection {String(index + 1).padStart(2, "0")}</p>
+          <p className="eyebrow">
+            Collection {String(index + 1).padStart(2, "0")}
+          </p>
           <h2
-            className="mt-2 text-2xl font-semibold tracking-[-0.045em] text-ink sm:text-3xl"
+            className="mt-2 text-2xl font-bold tracking-[-0.045em] text-ink sm:text-3xl"
             id={`category-${category.slug}-title`}
           >
             {category.name}
           </h2>
-          <p className="mt-2 max-w-xl text-sm leading-6 text-muted sm:text-base">
-            {category.description}
-          </p>
+          {category.description ? (
+            <p className="mt-2 max-w-xl text-sm leading-6 text-muted sm:text-base">
+              {category.description}
+            </p>
+          ) : null}
         </div>
         <Link
           className="text-link shrink-0"

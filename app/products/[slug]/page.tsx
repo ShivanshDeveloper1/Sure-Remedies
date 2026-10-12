@@ -40,7 +40,10 @@ export default async function ProductDetailPage({
 
   return (
     <>
-      <section className="bg-hero py-10 sm:py-14">
+      <section
+        className="py-10 sm:py-14 lg:py-16"
+        style={{ background: "var(--ivory)" }}
+      >
         <div className="page-container">
           <ProductDetails product={product} />
         </div>

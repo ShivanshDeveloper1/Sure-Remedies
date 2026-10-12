@@ -10,7 +10,7 @@ export function ProductGrid({ products, id }: ProductGridProps) {
   if (!products.length) {
     return (
       <p
-        className="rounded-2xl border border-ink/10 bg-white p-7 text-sm leading-6 text-muted"
+        className="rounded-2xl border border-forest/10 bg-white p-8 text-sm leading-6 text-muted"
         id={id}
       >
         There are no products to show just yet. Please check back soon.

@@ -4,24 +4,28 @@ import { PageIntro } from "@/components/page-intro";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn about Boonvet Formulations, an animal feed supplement manufacturer based in Saharanpur, Uttar Pradesh.",
+  description:
+    "Learn about Boonvet Formulations, an animal feed supplement manufacturer based in Saharanpur, Uttar Pradesh.",
 };
 
 const values = [
   {
+    number: "01",
     title: "Practical knowledge",
     description:
-      "A practical understanding of the animal feed supplement industry informs our work.",
+      "A practical understanding of the animal feed supplement industry informs our work and product selection.",
   },
   {
+    number: "02",
     title: "Product focus",
     description:
-      "Our catalogue brings together animal nutrition products for customers to explore.",
+      "Our catalogue brings together animal nutrition products for customers to explore, compare, and enquire about.",
   },
   {
+    number: "03",
     title: "A dedicated team",
     description:
-      "We welcome product questions and enquiries from people looking for more information.",
+      "We welcome product questions and enquiries from people looking for more information about our offerings.",
   },
 ];
 
@@ -34,13 +38,15 @@ export default function AboutPage() {
           <>
             Practical focus.
             <br />
-            <span className="text-purple">Animal nutrition.</span>
+            <span style={{ color: "var(--forest)" }}>Animal nutrition.</span>
           </>
         }
         description="Boonvet Formulations is an animal feed supplement manufacturer based in Saharanpur, Uttar Pradesh, India."
       />
-      <section className="section-space">
-        <div className="page-container grid gap-12 md:grid-cols-[0.8fr_1.2fr]">
+
+      {/* Mission */}
+      <section className="section-space" style={{ background: "var(--ivory)" }}>
+        <div className="page-container grid gap-12 md:grid-cols-[0.85fr_1.15fr]">
           <div>
             <p className="eyebrow">Our work</p>
             <h2 className="section-title mt-4">
@@ -60,24 +66,34 @@ export default function AboutPage() {
               Based in Saharanpur, Uttar Pradesh, we invite you to explore the
               products currently listed or contact us directly with questions.
             </p>
-            <Link className="button-primary mt-2" href="/products">
+            <Link className="button-primary mt-2 inline-flex" href="/products">
               Explore products <span aria-hidden="true">↗</span>
             </Link>
           </div>
         </div>
       </section>
-      <section className="section-space bg-soft">
+
+      {/* Values */}
+      <section
+        className="section-space"
+        style={{ background: "var(--ivory-dk)" }}
+      >
         <div className="page-container">
           <p className="eyebrow">What guides our work</p>
-          <h2 className="section-title mt-3">A practical, product-focused approach.</h2>
-          <div className="mt-9 grid gap-5 md:grid-cols-3">
-            {values.map((value, index) => (
+          <h2 className="section-title mt-3">
+            A practical, product-focused approach.
+          </h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {values.map((value) => (
               <article
-                className="rounded-3xl bg-white p-7 sm:p-8"
+                className="rounded-2xl border border-border bg-white p-7 sm:p-8"
                 key={value.title}
               >
-                <p className="text-sm font-semibold tracking-[0.16em] text-purple">
-                  0{index + 1}
+                <p
+                  className="text-sm font-bold tracking-[0.18em]"
+                  style={{ color: "var(--leaf)" }}
+                >
+                  {value.number}
                 </p>
                 <h3 className="mt-5 text-xl font-semibold tracking-tight text-ink">
                   {value.title}

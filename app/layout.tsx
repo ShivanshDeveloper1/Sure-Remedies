@@ -29,13 +29,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">
+   <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="">{children}</main>
         <WhatsAppButton />
         <Footer />
-
       </body>
     </html>
   );

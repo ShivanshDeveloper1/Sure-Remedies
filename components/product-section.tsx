@@ -20,7 +20,10 @@ export function ProductSection({
   linkLabel,
 }: ProductSectionProps) {
   return (
-    <section className="section-space">
+    <section
+      className="section-space"
+      style={{ background: "var(--ivory-dk)" }}
+    >
       <div className="page-container">
         <div className="section-heading">
           <div className="max-w-2xl">
@@ -29,19 +32,20 @@ export function ProductSection({
             <p className="mt-4 max-w-xl leading-7 text-muted">{description}</p>
           </div>
           {href && linkLabel ? (
-            <Link className="text-link" href={href}>
+            <Link className="text-link shrink-0" href={href}>
               {linkLabel} <span aria-hidden="true">↗</span>
             </Link>
           ) : null}
         </div>
+
         {products.length ? (
-          <div className="mt-9 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => (
               <ProductCard key={product.slug} product={product} />
             ))}
           </div>
         ) : (
-          <p className="mt-9 rounded-2xl border border-ink/10 bg-white p-8 text-muted">
+          <p className="mt-9 rounded-2xl border border-forest/10 bg-white p-8 text-muted">
             There are no products to show just yet. Please check back soon.
           </p>
         )}

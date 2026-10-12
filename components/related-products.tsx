@@ -11,7 +11,11 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
   }
 
   return (
-    <section aria-labelledby="related-products" className="section-space">
+    <section
+      aria-labelledby="related-products"
+      className="section-space"
+      style={{ background: "var(--ivory-dk)" }}
+    >
       <div className="page-container">
         <div className="max-w-2xl">
           <p className="eyebrow">Keep exploring</p>
@@ -19,7 +23,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
             More products.
           </h2>
         </div>
-        <div className="mt-8">
+        <div className="mt-9">
           <ProductGrid products={products} />
         </div>
       </div>

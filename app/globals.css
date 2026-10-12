@@ -1,38 +1,62 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbfaf6;
-  --foreground: #202820;
-  --muted: #667064;
-  --purple: #14568a;
-  --purple-dark: #0e426b;
-  --mint: #dcebdc;
-  --ink: #202820;
+  /* Brand palette */
+  --forest:   #1a4d3c;      /* Deep forest green – primary brand */
+  --forest-dk:#12382c;      /* Darker forest for hover states   */
+  --leaf:     #3a8c5c;      /* Fresh botanical green – accents   */
+  --leaf-lt:  #5fac7a;      /* Lighter botanical for highlights  */
+  --sage-bg:  #e8f0e9;      /* Soft sage tint backgrounds        */
+  --ivory:    #faf9f5;      /* Warm off-white body background    */
+  --ivory-dk: #f2f0e8;      /* Slightly deeper ivory for sections*/
+  --ink:      #1c2b22;      /* Deep charcoal-green for headings  */
+  --muted:    #5c6e62;      /* Muted neutral supporting text     */
+  --border:   #d8e2da;      /* Subtle border color               */
+
+  /* Legacy aliases kept for backward compat with existing components */
+  --background:  var(--ivory);
+  --foreground:  var(--ink);
+  --purple:      var(--forest);
+  --purple-dark: var(--forest-dk);
+  --mint:        var(--sage-bg);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --color-muted: var(--muted);
-  --color-purple: var(--purple);
-  --color-purple-dark: var(--purple-dark);
-  --color-mint: var(--mint);
-  --color-ink: var(--ink);
-  --color-soft: #f2f3ed;
-  --color-hero: #f5f4ed;
-  --color-brand-green: #68b879;
-  --color-brand-blue: #14568a;
+  --color-background:  var(--ivory);
+  --color-foreground:  var(--ink);
+  --color-muted:       var(--muted);
+  --color-purple:      var(--forest);
+  --color-purple-dark: var(--forest-dk);
+  --color-mint:        var(--sage-bg);
+  --color-ink:         var(--ink);
+  --color-soft:        var(--ivory-dk);
+  --color-hero:        var(--ivory);
+  --color-brand-green: var(--leaf);
+  --color-brand-blue:  var(--forest);
+  --color-forest:      var(--forest);
+  --color-leaf:        var(--leaf);
+  --color-leaf-lt:     var(--leaf-lt);
+  --color-sage-bg:     var(--sage-bg);
+  --color-ivory:       var(--ivory);
+  --color-border:      var(--border);
+  --font-sans:         var(--font-geist-sans);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -42,4 +66,10 @@ a {
 button,
 a {
   -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
