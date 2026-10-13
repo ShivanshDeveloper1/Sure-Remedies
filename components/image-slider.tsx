@@ -7,14 +7,14 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
   {
-    src: "/boon_vet-1.jpeg",
+    src: "/Booncal_home.jpeg",
     alt: "Boonvet Formulations animal nutrition products",
     eyebrow: "Animal Nutrition",
     title: "Nourishing Healthier Livestock",
     subtitle: "Science-backed feed formulations for stronger, more productive animals.",
   },
   {
-    src: "/boon_vet.png",
+    src: "/Booncal_Homepage.jpeg",
     alt: "Boonvet Formulations feed supplements and veterinary products",
     eyebrow: "Feed & Veterinary Care",
     title: "Trusted Supplements, Proven Results",

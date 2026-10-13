@@ -19,6 +19,18 @@
   --purple:      var(--forest);
   --purple-dark: var(--forest-dk);
   --mint:        var(--sage-bg);
+
+
+  --bg-main: #FAFAF7;
+  --ivory: #F4F3EE;
+  --sage-bg: #EAEFE9;
+  --ink: #0F1715;
+  --forest: #1B4332;
+  --forest-dark: #112A1F;
+  --leaf: #2D6A4F;
+  --leaf-lt: #74C69D;
+  --gold: #D4AF37;
+  --border-color: rgba(27, 67, 50, 0.12);
 }
 
 @theme inline {
@@ -73,3 +85,29 @@ a {
     scroll-behavior: auto;
   }
 }
+.product-image {
+  object-fit: contain;
+  object-position: center;
+}
+.product-detail-art {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;      /* change to 1 / 1 if your photos are square */
+  background: #fff;         /* fills the empty space around the image */
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.product-detail-art img {
+  object-fit: contain !important;   /* shows the full image, no cropping */
+  object-position: center;
+}
+
+.page-container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
