@@ -1,6 +1,6 @@
 
 export function getWhatsAppUrl(message: string) {
-   const phone = "917942720013";
+   const phone = "919368394598";
 
   if (!phone) return null;
 
